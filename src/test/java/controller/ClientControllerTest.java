@@ -58,4 +58,31 @@ public class ClientControllerTest {
         Client client = new Client("a", "a", "1");
         assertNotEquals(ctrl.AddClientIndex(client, 2018, 0, 100), "Index added");
     }
+
+    @Test
+    public void emptyAddress() {
+        ClientController ctrl = new ClientController();
+        String name = "Ana";
+        String address = "";
+        String id = "1";
+        assertEquals(ctrl.ValidateClient(name, address, id), "Name or address cannot be empty!");
+    }
+
+    @Test
+    public void emptyName() {
+        ClientController ctrl = new ClientController();
+        String name = "";
+        String address = "Gigel";
+        String id = "2";
+        assertEquals(ctrl.ValidateClient(name, address, id), "Name or address cannot be empty!");
+    }
+
+    @Test
+    public void emptyId() {
+        ClientController ctrl = new ClientController();
+        String name = "Ana";
+        String address = "Gigel";
+        String id = "";
+        assertEquals(ctrl.ValidateClient(name, address, id), null);
+    }
 }
