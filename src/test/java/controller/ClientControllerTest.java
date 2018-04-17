@@ -85,4 +85,59 @@ public class ClientControllerTest {
         String id = "";
         assertEquals(ctrl.ValidateClient(name, address, id), null);
     }
+
+    @Test
+    public void addClientIndexYearInvalid() {
+        ClientController ctrl = new ClientController();
+        String name = "Ana";
+        String address = "Gigel";
+        String id = "";
+        Client client = new Client(name, address, id);
+        ctrl.AddClient(name, address, id);
+        assertEquals(ctrl.AddClientIndex(client, 20199, 11, 100), "Invalid year format");
+    }
+
+    @Test
+    public void addClientIndexMonthInvalid() {
+        ClientController ctrl = new ClientController();
+        String name = "Ana";
+        String address = "Gigel";
+        String id = "";
+        Client client = new Client(name, address, id);
+        ctrl.AddClient(name, address, id);
+        assertEquals(ctrl.AddClientIndex(client, 2019, 111, 100), "Invalid month format");
+    }
+
+    @Test
+    public void addClientIndexPayInvalid() {
+        ClientController ctrl = new ClientController();
+        String name = "Ana";
+        String address = "Gigel";
+        String id = "";
+        Client client = new Client(name, address, id);
+        ctrl.AddClient(name, address, id);
+        assertEquals(ctrl.AddClientIndex(client, 2019, 11, -100), "Money to pay can't be less than 0");
+    }
+
+    @Test
+    public void addClientIndexClientNotExists() {
+        ClientController ctrl = new ClientController();
+        String name = "Ana";
+        String address = "Gigel";
+        String id = "";
+        Client client = new Client(name, address, id);
+        assertEquals(ctrl.AddClientIndex(client, 2019, 11, 100), "Client does not exists!");
+    }
+
+    @Test
+    public void addClientIndexValid2() {
+        ClientController ctrl = new ClientController();
+        String name = "Ana";
+        String address = "Gigel";
+        String id = "";
+        Client client = new Client(name, address, id);
+        ctrl.AddClient(name, address, id);
+        assertEquals(ctrl.AddClientIndex(client, 2019, 11, 100), "Index added");
+    }
+
 }
